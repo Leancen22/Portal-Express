@@ -1,0 +1,54 @@
+name: Portal express
+type: profile
+description: 'Install with commonly used features pre-configured.'
+version: 1.0.0
+core_version_requirement: ^9
+install:
+  - node
+  - history
+  - block
+  - breakpoint
+  - ckeditor
+  - config
+  - comment
+  - contextual
+  - contact
+  - menu_link_content
+  - datetime
+  - block_content
+  - editor
+  - help
+  - image
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - dynamic_page_cache
+  - big_pipe
+  - taxonomy
+  - dblog
+  - search
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - tour
+  - automated_cron
+  - layout_builder
+  - layout_discovery
+  - devel
+  - devel_generate
+  - webprofiler
+  - language
+  - content_translation
+  - locale
+  - content_moderation
+  - workflows
+  - admin_toolbar
+themes:
+  - generico
+  - olivero
+  - claro

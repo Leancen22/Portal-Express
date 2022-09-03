@@ -1,0 +1,25 @@
+name: 'Generico'
+type: theme
+description: 'Tema generico de portal express'
+core_version_requirement: ^9
+base theme: false
+package: Portal Express
+version: 1.0.0
+
+libraries:
+  - generico/global-styling
+
+regions:
+  header: Header
+  nav: Main Navigation
+  hero: Hero
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  left: Left
+  content: Content
+  right: Right
+  footer: Footer
+  footer_bar: Footer Bar
+  footer_addresses: Footer Addresses
+  footer_bottom: Footer Bottom
+
