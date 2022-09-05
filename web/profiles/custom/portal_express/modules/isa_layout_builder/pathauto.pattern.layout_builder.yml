@@ -1,0 +1,22 @@
+uuid: 449fa9a2-fd7a-4602-8e21-2ff6e1ae047b
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: layout_builder
+label: 'Página de diseño'
+type: 'canonical_entities:node'
+pattern: '/pagina/[node:title]'
+selection_criteria:
+  e08d493e-67b8-4110-a4d7-499c972a3403:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e08d493e-67b8-4110-a4d7-499c972a3403
+    context_mapping:
+      node: node
+    bundles:
+      layout_page: layout_page
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -39,6 +39,7 @@ install:
   - automated_cron
   - layout_builder
   - layout_discovery
+  - layout_builder_restrictions
   - devel
   - devel_generate
   - webprofiler
@@ -48,6 +49,67 @@ install:
   - content_moderation
   - workflows
   - admin_toolbar
+  - twig_tweak
+  - default_content
+  - twig_field_value
+  - menu_trail_by_path
+  - system
+  - media 
+  - quickedit
+  - responsive_image
+  - syslog
+  - serialization
+  - admin_toolbar_tools
+  - ctools
+  - pathauto
+  - subpathauto
+  - redirect
+  - smart_trim
+  - empty_page
+  - permissions_filter
+  - google_analytics
+  - health_check_url
+  - webform
+  - metatag
+  - seo_checklist
+  - simple_sitemap
+  - metatag_routes
+  - yoast_seo
+  - sitemap
+  - hreflang
+  - easy_breadcrumb
+  - linkit
+  - editor_advanced_link
+  - w3c_validator
+  - twigsuggest
+  - block_content_permissions
+  - blockgroup
+  - textarea_widget_for_text
+  - smtp
+  - menu_block
+  - recaptcha_v3
+  - tvi
+  - views_block_placement_exposed_form_defaults
+  - maxlength
+  - menu_block
+  - scheduler
+  - extlink
+  - webform_ui
+  - recaptcha
+  - paragraphs
+  - iframe
+  - search_api
+  - search_api_page
+  - material_icons
+  - config_split
+  - paragraph_owl
+  - isa_menu_admin
+  - isa_site_config
+  - isa_social_networks
+  - isa_block_library
+  - isa_feedback
+  - isa_layout_builder
+  - isa_layout_page
 themes:
   - generico
   - olivero
