@@ -42,6 +42,7 @@
         "drupal/health_check_url": "^3.1",
         "drupal/hreflang": "^1.9",
         "drupal/iframe": "^2.18",
+        "drupal/layout_builder_modal": "^1.1",
         "drupal/layout_builder_restrictions": "^2.15",
         "drupal/linkit": "^6.0@beta",
         "drupal/material_icons": "^1.0",

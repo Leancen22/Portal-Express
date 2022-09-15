@@ -23,3 +23,6 @@ regions:
   footer_addresses: Footer Addresses
   footer_bottom: Footer Bottom
 
+'interface translation project': generico
+'interface translation server pattern': profiles/contrib/isa/themes/generico/translations/%language.po
+

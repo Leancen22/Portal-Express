@@ -2,15 +2,6 @@ langcode: es
 status: true
 dependencies:
   config:
-    - node.type.activity
-    - node.type.authorities
-    - node.type.communication
-    - node.type.document
-    - node.type.file
-    - node.type.news
-    - node.type.page
-    - node.type.schedule
-    - node.type.turist_information
     - workflows.workflow.content_publishing
   module:
     - content_moderation

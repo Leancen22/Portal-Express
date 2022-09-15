@@ -2,19 +2,7 @@ langcode: es
 status: true
 dependencies:
   config:
-    - node.type.activity
-    - node.type.authorities
-    - node.type.communication
-    - node.type.document
-    - node.type.file
     - node.type.layout_page
-    - node.type.news
-    - node.type.page
-    - node.type.procedure
-    - node.type.resolution
-    - node.type.schedule
-    - node.type.service
-    - node.type.turist_information
   module:
     - content_moderation
 id: content_publishing
@@ -79,17 +67,5 @@ type_settings:
       weight: -1
   entity_types:
     node:
-      - activity
-      - authorities
-      - communication
-      - document
-      - file
       - layout_page
-      - news
-      - page
-      - procedure
-      - resolution
-      - schedule
-      - service
-      - turist_information
   default_moderation_state: draft

@@ -15,5 +15,6 @@ dependencies:
   - 'drupal:views'
   - 'layout_builder_restrictions:layout_builder_restrictions'
   - 'scheduler:scheduler'
+  - 'isa_field_storage:isa_field_storage'
 version: 1.0.2
 package: isa

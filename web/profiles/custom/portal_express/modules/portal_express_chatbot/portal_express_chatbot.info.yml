@@ -1,0 +1,9 @@
+name: Chatbot
+description: ChatBot test
+package: portalExpess
+type: module
+core_version_requirement: ^8 || ^9
+configure: portal_express_chatbot.admin_settings
+
+'interface translation project': portal_express_chatbot
+'interface translation server pattern': profiles/contrib/isa/modules/custom/portal_express_chatbot/translations/%language.po

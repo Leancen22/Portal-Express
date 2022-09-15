@@ -1,0 +1,9 @@
+<div{{ attributes }}>
+    {% if label and not page %}
+        <h2{{ title_attributes }}>
+            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+    {% endif %}
+    {{ title_prefix }}
+    {{ title_suffix }}
+</div>

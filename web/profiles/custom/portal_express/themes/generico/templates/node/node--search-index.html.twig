@@ -1,0 +1,26 @@
+{% if node.body %}
+  {% set summary = content.body|field_value %}
+{% elseif node.field_description %}
+  {% set summary = content.field_description|field_value %}
+{% endif %}
+
+{% set tags = content.field_tags %}
+{# {% set image_uri = content.field_image|field_value %} #}
+
+<div{{ attributes.addClass(['media-body, news-media-image']) }}>
+    {{ title_prefix }}
+    {{ title_suffix }}
+    <div class="div-search-index-view">
+      {% if node.field_image %}
+         <a class="enlace_desde_categorias" href={{url}}><img src="{{file_url(content.field_image['#items'].entity.uri.value) }}"/></a>
+         {# {{ image_uri }} #}
+      {% endif %}
+      <div class="news-body">
+        <h2 class="news-title"><a href="{{ url }}">{{ label }}</a></h2>
+         <p class="news-text">{{node.field_subtitle.value}}</p>
+        {{ tags }}
+      </div>
+    </div>
+</div>
+
+

@@ -1,1 +1,139 @@
 <?php
+
+use Drupal\file\Entity\File;
+use Drupal\block\Entity\Block;
+use Drupal\Core\Link;
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ */
+function generico_preprocess_page(array &$variables) {
+  $themePath = \Drupal::theme()->getActiveTheme()->getPath();
+
+  $site_config = Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['site_slogan'] = $site_config->get('slogan');
+
+  $banner_url = "/${themePath}/img/logo.jpg";
+  $config = Drupal::config('isa_site_config.config');
+  $banner = $config->get('banner');
+  if ($banner && count($banner)) {
+    $bannerId = array_pop($banner);
+    $file = File::load($bannerId);
+    if ($file) {
+      $banner_url = $file->createFileUrl();
+    }
+  }
+
+  $variables['banner_url'] = $banner_url;
+
+  $main_class = 'folder';
+  if (isset($variables['node'])) {
+    $main_class = 'document';
+  }
+  $variables['main_class'] = $main_class;
+}
+
+/**
+ *
+ * @param array $suggestions
+ * @param array $variables
+ *
+ */
+function generico_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+
+  if (isset($variables['elements']['content']['#block_content'])) {
+    /** @var \Drupal\block_content\Entity\BlockContent $content */
+    $content = $variables['elements']['content']['#block_content'];
+    $suggestions[] = 'block__content__' . $content->bundle();
+  }
+
+  if (isset($variables['elements']['#id']) && !empty($variables['elements']['#id'])) {
+    $bid = $variables['elements']['#id'];
+    $block = Block::load($bid);
+    $suggestions[] = 'block__region__' . $block->getRegion();
+
+    if (isset($variables['elements']['content']['#block_content'])) {
+      /** @var \Drupal\block_content\Entity\BlockContent $content */
+      $content = $variables['elements']['content']['#block_content'];
+      $suggestions[] = 'block__region__' . $block->getRegion() . '__' . $content->bundle();
+    }
+  }
+}
+
+function generico_preprocess_webform(&$variables) {
+  if (isset($variables["element"]["#webform_id"])) {
+    $config = Drupal::config('isa_site_config.config');
+    $variables['description'] = $config->get('contact_form_description');
+    $variables['purpose'] = $config->get('contact_form_purpose');
+    $variables['address'] = $config->get('address');
+
+    $site_config = Drupal::config('system.site');
+    $variables['site_name'] = $site_config->get('name');
+
+    $variables['attributes']['class'][] = 'Form';
+  }
+}
+
+/**
+ * Implementation of hook_preprocess_form_element
+ *
+ * @param $variables
+ */
+function generico_preprocess_form_element(&$variables) {
+  if ($variables['type'] != 'checkbox') {
+    $variables['label']['#attributes']['class'][] = 'Form-label';
+
+    if (isset($variables['label']['#title'])) {
+      $variables['label']['#title'] = $variables['label']['#title'] . ':';
+    }
+
+    if (isset($variables['label']['#required']) && $variables['label']['#required']) {
+      $variables['label']['#title'] = $variables['label']['#title'] . '*';
+    }
+  }
+}
+
+function generico_preprocess_input(&$variables) {
+  if ($variables['element']['#type'] === 'textfield') {
+    $variables['attributes']['class'][] = 'Form-widget';
+  }
+  if ($variables['element']['#type'] === 'submit') {
+    $variables['attributes']['class'][] = 'Button Button--primary';
+  }
+}
+
+function generico_preprocess_file_link(&$variables) {
+  /** @var \Drupal\file\Entity\File $file */
+  $file = $variables['file'];
+  $variables['file_name'] = $file->getFilename();
+}
+
+function generico_preprocess_pager(&$variables) {
+  $element = $variables['pager']['#element'];
+  /* @var $pager_manager \Drupal\Core\Pager\PagerManagerInterface */
+  $pager_manager = \Drupal::service('pager.manager');
+  $pager = $pager_manager->getPager($element);
+  if ($pager) {
+    $current_page = $pager->getCurrentPage();
+    $limit = $pager->getLimit();
+    $start = ($limit * $current_page) + 1;
+
+    $finish = $start + $limit - 1;
+    if ($current_page + 1 === $pager->getTotalPages()) {
+      $finish = $pager->getTotalItems();
+    }
+
+    $variables['total_items'] = $pager->getTotalItems();
+    $variables['limit'] = $limit;
+    $variables['start'] = $start;
+    $variables['finish'] = $finish;
+  }
+}
+
+function generico_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook === 'form' && !empty($variables['element']['#id'])) {
+    $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+  }
+}

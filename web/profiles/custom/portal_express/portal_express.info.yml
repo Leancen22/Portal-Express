@@ -54,7 +54,7 @@ install:
   - twig_field_value
   - menu_trail_by_path
   - system
-  - media 
+  - media
   - quickedit
   - responsive_image
   - syslog
@@ -101,8 +101,10 @@ install:
   - search_api
   - search_api_page
   - material_icons
-  - config_split
+  - layout_builder_modal
+  - checklistapi
   - paragraph_owl
+  - isa_field_storage
   - isa_menu_admin
   - isa_site_config
   - isa_social_networks
