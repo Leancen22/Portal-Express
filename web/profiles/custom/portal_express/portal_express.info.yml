@@ -98,8 +98,6 @@ install:
   - recaptcha
   - paragraphs
   - iframe
-  - search_api
-  - search_api_page
   - material_icons
   - layout_builder_modal
   - checklistapi
@@ -112,6 +110,39 @@ install:
   - isa_feedback
   - isa_layout_builder
   - isa_layout_page
+  - isa_chatbot
+  - isa_block_accordion
+  - isa_block_alert
+  - isa_block_audio
+  - isa_block_card
+  - isa_block_download_list
+  - isa_block_enlace
+  - isa_block_gallery
+  - isa_block_header
+  - isa_block_hero
+  - isa_block_highlight_content
+  - isa_block_highlighted_circle
+  - isa_block_highlighted_image
+  - isa_block_iframe
+  - isa_block_library
+  - isa_block_links
+  - isa_block_simple
+  - isa_block_slider
+  - isa_paragraph_audios
+  - isa_paragraph_download_list
+  - isa_paragraph_event_date
+  - isa_paragraph_gallery
+  - isa_paragraph_image
+  - isa_paragraph_links_list
+  - isa_paragraph_map
+  - isa_paragraph_multiple_images
+  - isa_paragraph_quote
+  - isa_paragraph_quote
+  - isa_paragraph_rich_text
+  - isa_paragraph_text
+  - isa_paragraph_video
+  - isa_tags
+  - isa_content_moderation
 themes:
   - generico
   - olivero

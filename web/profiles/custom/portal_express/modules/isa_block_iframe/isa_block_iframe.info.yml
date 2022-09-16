@@ -10,5 +10,6 @@ dependencies:
   - 'drupal:options'
   - 'iframe:iframe'
   - 'isa_field_storage:isa_field_storage'
+  - 'isa_tags:isa_tags'
 version: 0.1.0
 package: isa

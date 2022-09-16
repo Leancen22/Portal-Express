@@ -1,3 +1,4 @@
+uuid: c2881177-61bc-4605-aa85-0724cfd2ba46
 langcode: es
 status: true
 dependencies:
@@ -32,34 +33,47 @@ third_party_settings:
         third_party_settings: {  }
   layout_builder_restrictions:
     allowed_block_categories:
-      - Block
-      - 'Block Group'
       - 'Chaos Tools'
       - 'Content fields'
       - 'Custom block types'
-      - 'Custom blocks'
       - Devel
       - Forms
-      - Group
+      - Help
       - 'Inline blocks'
+      - 'Isa Chatbot'
       - 'Isa Feedback'
       - 'Isa Site Config'
-      - 'Listas (Views)'
       - 'Lists (Views)'
       - Menus
       - Sitemap
-      - 'Social media share'
       - System
       - User
-      - Views
       - Webform
       - core
     entity_view_mode_restriction:
       allowed_layouts:
-        - 'bootstrap_layout_builder:blb_col_1'
-        - 'bootstrap_layout_builder:blb_col_2'
-        - 'bootstrap_layout_builder:blb_col_3'
-        - 'bootstrap_layout_builder:blb_col_4'
+        - layout_onecol
+        - left_sidebar
+        - right_sidebar
+        - layout_twocol_section
+        - layout_threecol_section
+        - layout_fourcol_section
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
+      restricted_categories:
+        - 'Chaos Tools'
+        - 'Content fields'
+        - Devel
+        - Forms
+        - Help
+        - 'Isa Chatbot'
+        - 'Isa Feedback'
+        - 'Isa Site Config'
+        - Sitemap
+        - System
+        - User
+        - Webform
+        - core
       blacklisted_blocks: {  }
       whitelisted_blocks:
         'Lists (Views)':
@@ -71,24 +85,8 @@ third_party_settings:
           - 'views_block:recent_news_municipality-block_1'
         Menus:
           - 'menu_block:main'
-      restricted_categories:
-        - Block
-        - 'Block Group'
-        - 'Chaos Tools'
-        - 'Content fields'
-        - Devel
-        - Forms
-        - Group
-        - 'Isa Feedback'
-        - 'Isa Site Config'
-        - 'Listas (Views)'
-        - Sitemap
-        - 'Social media share'
-        - System
-        - User
-        - Views
-        - Webform
-        - core
+_core:
+  default_config_hash: 6w3kuesOyUdLAyL5aYDGsef7LBoHU7p0hIHu5JYYeGw
 id: node.layout_page.default
 targetEntityType: node
 bundle: layout_page

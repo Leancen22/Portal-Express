@@ -11,5 +11,6 @@ dependencies:
   - 'isa_paragraph_multiple_images:isa_paragraph_multiple_images'
   - 'isa_paragraph_video:isa_paragraph_video'
   - 'paragraph_owl:paragraph_owl'
+  - 'isa_core:isa_core'
   - 'paragraphs:paragraphs'
 package: isa

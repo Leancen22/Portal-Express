@@ -1,5 +1,5 @@
-uuid: 7bce7c01-4318-4a15-bf41-6a4880d20c53
-langcode: es
+uuid: 4b9346ee-534a-498a-9d33-3249a3dc57d7
+langcode: en
 status: true
 dependencies:
   module:
@@ -7,12 +7,12 @@ dependencies:
 id: pagina_de_diseno
 label: 'Página de diseño'
 type: 'canonical_entities:node'
-pattern: '/[node:title]'
+pattern: '/pagina/[node:title]'
 selection_criteria:
-  b6f8fac2-e998-4520-ac11-f6209752a4ae:
+  01dcd76b-3bed-4acc-864f-bcdcf4a82ef9:
     id: 'entity_bundle:node'
     negate: false
-    uuid: b6f8fac2-e998-4520-ac11-f6209752a4ae
+    uuid: 01dcd76b-3bed-4acc-864f-bcdcf4a82ef9
     context_mapping:
       node: node
     bundles:

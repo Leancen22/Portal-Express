@@ -77,7 +77,8 @@
         "drupal/webform": "^6.1",
         "drupal/webform_ui": "^6.1",
         "drupal/yoast_seo": "^1.7",
-        "drush/drush": "^11.0"
+        "drush/drush": "^11.0",
+        "kint-php/kint": "^4.2"
     },
     "conflict": {
         "drupal/drupal": "*"

@@ -1,17 +1,18 @@
-langcode: es
+uuid: db7938f2-37e7-477f-9fb2-de1773f78094
+langcode: en
 status: true
 dependencies:
   module:
     - node
 id: layout_page
-label: 'Página de diseño'
+label: 'Layout Page'
 type: 'canonical_entities:node'
-pattern: '/[node:field_name:value]/[node:title]'
+pattern: '/[node:title]'
 selection_criteria:
-  862149d8-b619-4fe3-a2da-bc2849945ecd:
-    id: node_type
+  2c1b94a7-0553-485a-8927-ccd9bb9b19af:
+    id: 'entity_bundle:node'
     negate: false
-    uuid: 862149d8-b619-4fe3-a2da-bc2849945ecd
+    uuid: 2c1b94a7-0553-485a-8927-ccd9bb9b19af
     context_mapping:
       node: node
     bundles:

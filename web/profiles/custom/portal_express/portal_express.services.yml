@@ -1,0 +1,13 @@
+services:
+  portal_express.form_helper:
+    class: '\Drupal\portal_express\Form\FormHelper'
+    arguments:
+      - '@element_info'
+  portal_express.config_bit:
+    class: '\Drupal\portal_express\Config\ConfigBit'
+    arguments: ['@config.factory', '@config.manager', '@module_handler', '@database', '@plugin.cache_clearer']
+    tags:
+      - { name: 'event_subscriber' }
+  portal_express.definition_update_manager:
+    class: '\Drupal\portal_express\Entity\IsaEntityDefinitionUpdateManager'
+    arguments: ['@class_resolver', '@entity.definition_update_manager']
