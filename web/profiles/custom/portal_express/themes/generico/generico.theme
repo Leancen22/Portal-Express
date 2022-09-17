@@ -1,41 +1,67 @@
 <?php
 
+/**
+ * @file
+ * Functions to support theming in the Classy theme.
+ *
+ * No changes that impact functionality should be made to this file, as Classy
+ * will be deprecated in Drupal 9. Changes should instead be made in the core
+ * themes Bartik, Seven, Claro and/or Umami.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Form\ViewsForm;
 use Drupal\file\Entity\File;
 use Drupal\block\Entity\Block;
 use Drupal\Core\Link;
 
 /**
- * Implements hook_preprocess_page().
+ * Implements hook_preprocess_links__media_library_menu().
  *
+ * This targets the menu of available media types in the media library's modal
+ * dialog.
+ *
+ * @todo Do this in the relevant template once
+ *   https://www.drupal.org/project/drupal/issues/3088856 is resolved.
  */
-function generico_preprocess_page(array &$variables) {
-  $themePath = \Drupal::theme()->getActiveTheme()->getPath();
-
-  $site_config = Drupal::config('system.site');
-  $variables['site_name'] = $site_config->get('name');
-  $variables['site_slogan'] = $site_config->get('slogan');
-
-  $banner_url = "/${themePath}/img/logo.jpg";
-  $config = Drupal::config('isa_site_config.config');
-  $banner = $config->get('banner');
-  if ($banner && count($banner)) {
-    $bannerId = array_pop($banner);
-    $file = File::load($bannerId);
-    if ($file) {
-      $banner_url = $file->createFileUrl();
-    }
+function generico_preprocess_links__media_library_menu(array &$variables) {
+  foreach ($variables['links'] as &$link) {
+    $link['link']['#options']['attributes']['class'][] = 'media-library-menu__link';
   }
-
-  $variables['banner_url'] = $banner_url;
-
-  $main_class = 'folder';
-  if (isset($variables['node'])) {
-    $main_class = 'document';
-  }
-  $variables['main_class'] = $main_class;
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function generico_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+  if ($form_object instanceof ViewsForm && strpos($form_object->getBaseFormId(), 'views_form_media_library') === 0) {
+    $form['#attributes']['class'][] = 'media-library-views-form';
+  }
+}
+
+/**
+ * Implements hook_preprocess_image_widget().
+ */
+function generico_preprocess_image_widget(array &$variables) {
+  $data = &$variables['data'];
+
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
+    unset($data['preview']);
+  }
+}
+
+/**
+ * No changes that impact functionality should be made to this file, as Classy
+ * will be deprecated in Drupal 9. Changes should instead be made in the core
+ * themes Bartik, Seven, Claro and/or Umami.
+ */
+
+ /**
  *
  * @param array $suggestions
  * @param array $variables
@@ -59,48 +85,6 @@ function generico_theme_suggestions_block_alter(array &$suggestions, array $vari
       $content = $variables['elements']['content']['#block_content'];
       $suggestions[] = 'block__region__' . $block->getRegion() . '__' . $content->bundle();
     }
-  }
-}
-
-function generico_preprocess_webform(&$variables) {
-  if (isset($variables["element"]["#webform_id"])) {
-    $config = Drupal::config('isa_site_config.config');
-    $variables['description'] = $config->get('contact_form_description');
-    $variables['purpose'] = $config->get('contact_form_purpose');
-    $variables['address'] = $config->get('address');
-
-    $site_config = Drupal::config('system.site');
-    $variables['site_name'] = $site_config->get('name');
-
-    $variables['attributes']['class'][] = 'Form';
-  }
-}
-
-/**
- * Implementation of hook_preprocess_form_element
- *
- * @param $variables
- */
-function generico_preprocess_form_element(&$variables) {
-  if ($variables['type'] != 'checkbox') {
-    $variables['label']['#attributes']['class'][] = 'Form-label';
-
-    if (isset($variables['label']['#title'])) {
-      $variables['label']['#title'] = $variables['label']['#title'] . ':';
-    }
-
-    if (isset($variables['label']['#required']) && $variables['label']['#required']) {
-      $variables['label']['#title'] = $variables['label']['#title'] . '*';
-    }
-  }
-}
-
-function generico_preprocess_input(&$variables) {
-  if ($variables['element']['#type'] === 'textfield') {
-    $variables['attributes']['class'][] = 'Form-widget';
-  }
-  if ($variables['element']['#type'] === 'submit') {
-    $variables['attributes']['class'][] = 'Button Button--primary';
   }
 }
 
@@ -132,8 +116,42 @@ function generico_preprocess_pager(&$variables) {
   }
 }
 
+function generico_preprocess_views_view(&$variables){
+    $view = $variables['view'];
+    if ($view->id() == 'agenda' || $view->id() == 'novedades' || $view->id() == 'carrusel_de_museos' || $view->id() == 'galeria_de_visitas_virtuales' || $view->id() == 'carrusel_de_sitios_home') {
+        $variables['more']['#options']['attributes']['class'][] = 'btn-large btn-primary-outline btn-icon';
+    }
+}
+
+function generico_preprocess_paragraph(&$variables){
+  $request = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $variables['title'] = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+  $variables['#cache']['contexts'][] = 'url';
+}
+
 function generico_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   if ($hook === 'form' && !empty($variables['element']['#id'])) {
     $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-task.html.twig.
+ */
+function generico_preprocess_menu_local_task(&$variables) {
+  $link = $variables['element']['#link'];
+  $url = $link['url'];
+  $options = $url->getOptions();
+  $url->setOptions($options + $link['localized_options']);
+  $variables['item'] = Link::fromTextAndUrl($link['title'], $url);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-tasks.html.twig.
+ */
+function generico_preprocess_menu_local_tasks(&$variables) {
+  $variables['nav_style'] = 'nav-pills';
+  // $variables['nav_style'] = 'nav-tabs';
 }

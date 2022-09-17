@@ -1,14 +1,14 @@
 global-styling:
-  version: 1.0.0
+  version: 1.0
   css:
     theme:
-      design/styles.min.css: {}
-      css/styles.css: {}
+      design/styles.min.css: { }
+      css/styles.css: { }
       //fonts.googleapis.com/css2?family=Roboto&display=swap: { }
       //fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap: { }
   js:
-    design/scripts.min.js: {}
-    js/generico.js: {}
+    design/scripts.min.js: { }
+    js/inten.js: { }
   dependencies:
     - core/jquery
     - core/drupal

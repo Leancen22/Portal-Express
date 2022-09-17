@@ -1,20 +1,15 @@
-name: 'Generico'
+name: Generico
 type: theme
-description: 'Tema generico de portal express'
-core_version_requirement: ^9
+description: 'Nuevo tema generico'
+core_version_requirement: ^8 || ^9
 base theme: false
-package: Portal Express
-version: 1.0.0
-
-libraries:
-  - generico/global-styling
 
 regions:
   header: Header
-  nav: Main Navigation
+  nav: Main navigation
   hero: Hero
   breadcrumb: Breadcrumb
-  highlighted: Highlighted
+  highlight: Highlight
   left: Left
   content: Content
   right: Right
@@ -23,6 +18,8 @@ regions:
   footer_addresses: Footer Addresses
   footer_bottom: Footer Bottom
 
-'interface translation project': generico
-'interface translation server pattern': profiles/contrib/isa/themes/generico/translations/%language.po
+libraries:
+  - generico/global-styling
+
+
 
